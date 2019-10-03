@@ -42,14 +42,23 @@ public class HibernateSearchService {
         QueryBuilder queryBuilder = fullTextEntityManager.getSearchFactory().buildQueryBuilder().forEntity(Egrid.class).get();
         
         
+//        org.apache.lucene.search.Query query = queryBuilder
+//                .keyword()
+//                .onField("egrid")
+//                .matching("CH870679603216")
+//                .createQuery();
+        
         org.apache.lucene.search.Query query = queryBuilder
                 .keyword()
+                .wildcard()
                 .onField("egrid")
-                .matching("CH870679603216")
-                .createQuery();
+                .matching("*8*")
+                .createQuery();        
+        
 
         org.hibernate.search.jpa.FullTextQuery jpaQuery = fullTextEntityManager.createFullTextQuery(query, Egrid.class);
-//        Query luceneQuery = qb.keyword().fuzzy().withEditDistanceUpTo(1).withPrefixLength(1).onFields("egrid")
+
+        //        Query luceneQuery = jpaQuery.keyword().fuzzy().withEditDistanceUpTo(1).withPrefixLength(1).onFields("egrid")
 //                .matching(searchTerm).createQuery();
 
 //        javax.persistence.Query jpaQuery = fullTextEntityManager.createFullTextQuery(luceneQuery, Egrid.class);

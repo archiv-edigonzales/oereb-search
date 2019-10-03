@@ -7,6 +7,7 @@ import javax.persistence.Id;
 
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.*;
 
 @Indexed
 @Entity
@@ -15,7 +16,7 @@ public class Egrid {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     
-    @Field
+    @Field(index=Index.YES, analyze=Analyze.YES, store=Store.YES)
     private String egrid;
 
     public long getId() {
