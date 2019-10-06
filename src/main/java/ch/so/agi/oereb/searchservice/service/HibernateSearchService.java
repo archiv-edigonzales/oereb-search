@@ -51,10 +51,11 @@ public class HibernateSearchService {
         org.apache.lucene.search.Query query = queryBuilder
                 .keyword()
                 .wildcard()
-                .onField("egrid")
-                .matching("*8*")
+                .onField("searchtext")
+                .matching(searchTerm.toLowerCase()+"*")
                 .createQuery();        
-        
+
+        System.out.println(query.toString());
 
         org.hibernate.search.jpa.FullTextQuery jpaQuery = fullTextEntityManager.createFullTextQuery(query, Egrid.class);
 
@@ -69,6 +70,7 @@ public class HibernateSearchService {
         try {
             egridList = jpaQuery.getResultList();
         } catch (NoResultException nre) {
+            nre.printStackTrace();
             ;// do nothing
 
         }

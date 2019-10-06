@@ -16,18 +16,23 @@ public class EgridService {
     Egrid e3 = new Egrid();
     Egrid e4 = new Egrid();
 
+    public long fubar() {
+        long count = egridrepository.count();
+        return count;
+    }
+    
     public void addEgrids() {
-        e1.setEgrid("CH870679603216");            
-        e2.setEgrid("CH857632820629");            
-        e3.setEgrid("CH807306583219");            
-        e4.setEgrid("CH208606783206");            
+//        e1.setEgrid("CH870679603216");            
+//        e2.setEgrid("CH857632820629");            
+//        e3.setEgrid("CH807306583219");            
+//        e4.setEgrid("CH208606783206");            
+//
+//        egridrepository.save(e1);
+//        egridrepository.save(e2);
+//        egridrepository.save(e3);
+//        egridrepository.save(e4);
 
-        egridrepository.save(e1);
-        egridrepository.save(e2);
-        egridrepository.save(e3);
-        egridrepository.save(e4);
-
-        System.out.println("Egrid have been added : " + egridrepository.findAll());
+//        System.out.println("Egrid have been added : " + egridrepository.findAll());
     }
 
 }

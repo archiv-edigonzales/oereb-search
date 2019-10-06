@@ -23,18 +23,31 @@ public class MainController {
 
     @Autowired
     private EgridService egridservice;
+    
+    @GetMapping(path = "/reindex", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<String> reindex(){
+
+        searchservice.initializeHibernateSearch();
+        
+        return ResponseEntity.ok("fubar");
+    }
+
 
     @GetMapping(path = "/search/{text}", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<String> search(@PathVariable("text") String text){
 //      return ResponseEntity.ok(search.search(text));
         egridservice.addEgrids();
+        
+        //long count = egridservice.fubar();
+        //logger.info(String.valueOf(count));
 
         List<Egrid> searchResults = null;
         try {
             searchResults = searchservice.fuzzySearch(text);
             logger.info(String.valueOf(searchResults.size()));
         } catch (Exception e) {
-            
+            e.printStackTrace();
+            logger.info(e.getMessage());
         }
     
         
